@@ -1,8 +1,14 @@
 // import logo from "./logo.svg";
+// import logo from "./logo.svg";
+// import "./App.css";
+// // import Btn from "./Btn";
+// import ModeToggle from "./ModeToggle";
+import { useState } from "react";
 import "./App.css";
 // import { useState } from "react";
 import UserContext from "./UserContext";
 import { UserProvider, useUser } from "./UserContext";
+import React from "react";
 
 /*        TODO APPLICATION         */
 
@@ -131,59 +137,86 @@ import { UserProvider, useUser } from "./UserContext";
 //   );
 // }
 
-const LoggedInUser = () => {
-  const { user } = useUser();
+// const LoggedInUser = () => {
+//   const { user } = useUser();
 
-  return (
-    <p>
-      Hello <span className="Username">{user.name}</span>
-    </p>
-  );
-};
+//   return (
+//     <p>
+//       Hello <span className="Username">{user.name}</span>
+//     </p>
+//   );
+// };
 
-const Header = () => {
-  return (
-    <header>
-      <h2>Blog App</h2>
-      <LoggedInUser />
-    </header>
-  );
-};
+// const Header = () => {
+//   return (
+//     <header>
+//       <h2>Blog App</h2>
+//       <LoggedInUser />
+//     </header>
+//   );
+// };
 
-const Page = () => {
-  const { user } = useUser();
-  return (
-    <div>
-      <h2>What is Lorem ipsum?</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum
-      </p>
-      <p>Written by {user.name}</p>
-    </div>
-  );
-};
+// const Page = () => {
+//   const { user } = useUser();
+//   return (
+//     <div>
+//       <h2>What is Lorem ipsum?</h2>
+//       <p>
+//         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+//         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+//         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+//         commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+//         velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+//         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+//         mollit anim id est laborum
+//       </p>
+//       <p>Written by {user.name}</p>
+//     </div>
+//   );
+// };
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <Header />
+//       <Page />
+//     </div>
+//   );
+// }
+
+// function Root() {
+//   return (
+//     <UserProvider>
+//       <App />
+//     </UserProvider>
+//   );
+// }
+
+/************* MODE TOGGLE****************/
+// function App() {
+//   return <ModeToggle />;
+// }
 
 function App() {
+  const [toggle, setToggle] = useState(false);
+
+  const ClickHandler = () => {
+    setToggle(!toggle);
+  };
+
+  React.useEffect(() => {
+    document.title = toggle
+      ? "Welcome to Little Lemon"
+      : "Using the useEffect hook";
+  }, []);
+
   return (
-    <div className="App">
-      <Header />
-      <Page />
+    <div>
+      <h1>Using the useEffect hook</h1>
+      <button onClick={ClickHandler}>Toggle Message</button>
+      {toggle && <h2>Welcome to Little Lemon</h2>}
     </div>
   );
 }
 
-function Root() {
-  return (
-    <UserProvider>
-      <App />
-    </UserProvider>
-  );
-}
-
-export default Root;
+export default App;
