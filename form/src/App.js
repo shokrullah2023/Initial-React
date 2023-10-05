@@ -1,6 +1,8 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+// import { useState } from "react";
+import UserContext from "./UserContext";
+import { UserProvider, useUser } from "./UserContext";
 
 /*        TODO APPLICATION         */
 
@@ -83,50 +85,105 @@ import { useState } from "react";
 //   );
 // }
 
+// function App() {
+//   const [score, setScore] = useState("4");
+//   const [comment, setComment] = useState("");
+
+//   const handleClick = (e) => {
+//     e.preventDefault();
+//     setScore("4");
+
+//     if (Number(score) <= 5 && comment.length <= 5) {
+//       alert("Please provide a comment explaining why the experience was poor.");
+//       return;
+//     }
+
+//     console.log("Form Submitted");
+//     setComment("");
+//   };
+//   return (
+//     <div className="App">
+//       <form onSubmit={handleClick}>
+//         <fieldset>
+//           <h2>Feedback form</h2>
+//           <div className="Field">
+//             <label>Score: {score} </label>
+//             <input
+//               type="range"
+//               min="0"
+//               max="10"
+//               value={score}
+//               onChange={(e) => setScore(e.target.value)}
+//             />
+//           </div>
+//           <div className="Field">
+//             <label>Comment: </label>
+//             <textarea
+//               // id="comment"
+//               value={comment}
+//               onChange={(e) => setComment(e.target.value)}
+//             />
+//           </div>
+//           <button type="submit">Submit</button>
+//         </fieldset>
+//       </form>
+//     </div>
+//   );
+// }
+
+const LoggedInUser = () => {
+  const { user } = useUser();
+
+  return (
+    <p>
+      Hello <span className="Username">{user.name}</span>
+    </p>
+  );
+};
+
+const Header = () => {
+  return (
+    <header>
+      <h2>Blog App</h2>
+      <LoggedInUser />
+    </header>
+  );
+};
+
+const Page = () => {
+  const { user } = useUser();
+  return (
+    <div>
+      <h2>What is Lorem ipsum?</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum
+      </p>
+      <p>Written by {user.name}</p>
+    </div>
+  );
+};
+
 function App() {
-  const [score, setScore] = useState("4");
-  const [comment, setComment] = useState("");
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    setScore("4");
-
-    if (Number(score) <= 5 && comment.length <= 5) {
-      alert("Please provide a comment explaining why the experience was poor.");
-      return;
-    }
-
-    console.log("Form Submitted");
-    setComment("");
-  };
   return (
     <div className="App">
-      <form onSubmit={handleClick}>
-        <fieldset>
-          <h2>Feedback form</h2>
-          <div className="Field">
-            <label>Score: {score} </label>
-            <input
-              type="range"
-              min="0"
-              max="10"
-              value={score}
-              onChange={(e) => setScore(e.target.value)}
-            />
-          </div>
-          <div className="Field">
-            <label>Comment: </label>
-            <textarea
-              // id="comment"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            />
-          </div>
-          <button type="submit">Submit</button>
-        </fieldset>
-      </form>
+      <Header />
+      <Page />
     </div>
   );
 }
 
-export default App;
+function Root() {
+  return (
+    <UserProvider>
+      <App />
+    </UserProvider>
+  );
+}
+
+export default Root;
