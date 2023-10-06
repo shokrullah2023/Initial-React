@@ -3,7 +3,7 @@
 // import "./App.css";
 // // import Btn from "./Btn";
 // import ModeToggle from "./ModeToggle";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import "./App.css";
 // import { useState } from "react";
 import UserContext from "./UserContext";
@@ -311,6 +311,51 @@ import React from "react";
 //     </div>
 //   ) : (
 //     <h2>Data pending...</h2>
+//   );
+// }
+
+/***************COUNTING RESTAURANT INCOME USING USEREDUCER*****************/
+
+// const reducer = (state, action) => {
+//   if (action.type === "buying_ingredient") return { money: state.money - 10 };
+//   if (action.type === "sell_a_meal") return { money: state.money + 10 };
+//   return state;
+// };
+
+// function App() {
+//   const initialState = { money: 100 };
+//   const [state, dispatch] = useReducer(reducer, initialState);
+
+//   return (
+//     <div>
+//       <h1>Wallet: {state.money}</h1>
+//       <div>
+//         <button onClick={() => dispatch({ type: "buying_ingredient" })}>
+//           Shopping for veggies!
+//         </button>
+//         <button onClick={() => dispatch({ type: "sell_a_meal" })}>
+//           Serve a meal to the customer
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }
+
+/***********FOCUS INPUT USING THE USEREF****************/
+
+// function App() {
+//   const formInputRef = React.useRef(null);
+
+//   const focusInput = () => {
+//     formInputRef.current.focus();
+//   };
+
+//   return (
+//     <>
+//       <h1>Using useRef to access underlying DOM</h1>
+//       <input ref={formInputRef} type="text" />
+//       <button onClick={focusInput}>Focus input</button>
+//     </>
 //   );
 // }
 
