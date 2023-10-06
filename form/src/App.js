@@ -3,7 +3,7 @@
 // import "./App.css";
 // // import Btn from "./Btn";
 // import ModeToggle from "./ModeToggle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 // import { useState } from "react";
 import UserContext from "./UserContext";
@@ -192,31 +192,126 @@ import React from "react";
 //   );
 // }
 
+/**************SET GOAL USING HOOK STATE*****************/
+
+// function GoalForm(props) {
+//   const [formData, setFormData] = useState({ goal: "", by: "" });
+
+//   function ChangeHandler(e) {
+//     setFormData({ ...formData, [e.target.name]: e.target.value });
+//   }
+
+//   function SubmitHandler(e) {
+//     e.preventDefault();
+//     props.onAdd(formData);
+//     setFormData({ goal: "", by: "" });
+//   }
+
+//   return (
+//     <>
+//       <h1>My little Lemon Goals</h1>
+//       <form onSubmit={SubmitHandler}>
+//         <input
+//           type="text"
+//           name="goal"
+//           placeholder="Goal"
+//           value={formData.goal}
+//           onChange={ChangeHandler}
+//         />
+//         <input
+//           type="text"
+//           name="by"
+//           placeholder="by"
+//           value={formData.by}
+//           onChange={ChangeHandler}
+//         />
+//         <button>Submit Goal</button>
+//       </form>
+//     </>
+//   );
+// }
+
+// function ListOfGoals(props) {
+//   return (
+//     <ul>
+//       {props.allGoals.map((g) => (
+//         <li key={g.goal}>
+//           <span>
+//             My goal is to {g.goal}, by {g.by}
+//           </span>
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// }
+// function App() {
+//   const [allGoals, updateAllGoals] = useState([]);
+
+//   function addGoal(goal) {
+//     updateAllGoals([...allGoals, goal]);
+//   }
+
+//   return (
+//     <div className="App">
+//       <GoalForm onAdd={addGoal} />
+//       <ListOfGoals allGoals={allGoals} />
+//     </div>
+//   );
+// }
+
 /************* MODE TOGGLE****************/
 // function App() {
 //   return <ModeToggle />;
 // }
 
-function App() {
-  const [toggle, setToggle] = useState(false);
+/********MODE TOGGLE GETTING LEVERAGE OF USEEFFECT**********/
 
-  const ClickHandler = () => {
-    setToggle(!toggle);
-  };
+// function App() {
+//   const [toggle, setToggle] = useState(false);
 
-  React.useEffect(() => {
-    document.title = toggle
-      ? "Welcome to Little Lemon"
-      : "Using the useEffect hook";
-  }, []);
+//   const ClickHandler = () => {
+//     setToggle(!toggle);
+//   };
 
-  return (
-    <div>
-      <h1>Using the useEffect hook</h1>
-      <button onClick={ClickHandler}>Toggle Message</button>
-      {toggle && <h2>Welcome to Little Lemon</h2>}
-    </div>
-  );
-}
+//   React.useEffect(() => {
+//     document.title = toggle
+//       ? "Welcome to Little Lemon"
+//       : "Using the useEffect hook";
+//   }, []);
+
+//   return (
+//     <div>
+//       <h1>Using the useEffect hook</h1>
+//       <button onClick={ClickHandler}>Toggle Message</button>
+//       {toggle && <h2>Welcome to Little Lemon</h2>}
+//     </div>
+//   );
+// }
+
+/************FETCHING DATA THROUGH API**************/
+
+// function App() {
+//   const [user, setUser] = useState([]);
+
+//   const fechData = () => {
+//     fetch("https://randomuser.me/api/?results=1")
+//       .then((respone) => respone.json())
+//       .then((data) => setUser(data));
+//   };
+
+//   useEffect(() => {
+//     fechData();
+//   }, []);
+
+//   return Object.keys(user).length > 0 ? (
+//     <div>
+//       <h1>Data Returned</h1>
+//       <h2>FirstName: {user.results[0].name.first}</h2>
+//       <h2>FirstName: {user.results[0].name.last}</h2>
+//     </div>
+//   ) : (
+//     <h2>Data pending...</h2>
+//   );
+// }
 
 export default App;
