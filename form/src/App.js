@@ -8,7 +8,7 @@ import "./App.css";
 // import { useState } from "react";
 // import UserContext from "./UserContext";
 // import { UserProvider, useUser } from "./UserContext";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 /*        TODO APPLICATION         */
 
@@ -428,24 +428,40 @@ import React from "react";
 //   );
 // }
 
-<<<<<<< HEAD
 /***************COMPONENT COMPOSITION*****************/
-const Button = ({ children, backgroundColor }) => {
-  return <button style={{ backgroundColor }}>{children}</button>;
-};
+// const Button = ({ children, backgroundColor }) => {
+//   return <button style={{ backgroundColor }}>{children}</button>;
+// };
 
-const Alert = ({ children }) => {
-  return (
-    <>
-      <div className="Overlay" />
-      <div className="Alert">{children}</div>
-    </>
-  );
-};
+// const Alert = ({ children }) => {
+//   return (
+//     <>
+//       <div className="Overlay" />
+//       <div className="Alert">{children}</div>
+//     </>
+//   );
+// };
 
-const DeleteButton = () => {
-  return <Button backgroundColor="red">Delete</Button>;
-=======
+// const DeleteButton = () => {
+//   return <Button backgroundColor="red">Delete</Button>;
+
+//   function App() {
+//     return (
+//       <div className="App">
+//         <header>Little Lemon Restuarant 🍕</header>
+//         <Alert>
+//           <h4>Delete Account</h4>
+//           <p>
+//             Are you sure you want to proceed? You will miss all your delicious
+//             recipes!
+//           </p>
+//           <DeleteButton />
+//         </Alert>
+//       </div>
+//     );
+//   }
+// };
+
 /*************MODYFING THE CHILDREN USING REACT.CHILDREN AND CLONE***************/
 
 // const Row = ({ children, spacing }) => {
@@ -547,11 +563,25 @@ const DeleteButton = () => {
 //   );
 // }
 
-/********************************/
+/*************FETCHING DATA USING RENDER PROPS*******************/
+
+const DataFetcher = ({ render, url }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    if (url.includes("desserts")) {
+      return setData(["cake", "ice cream", "pie", "brownie"]);
+    } else {
+      setData(["water", "soda", "juice"]);
+    }
+  }, []);
+
+  return render(data);
+};
 
 const DesertCount = () => {
   return (
-    <DateFetcher
+    <DataFetcher
       url="https://littlelemon/desserts"
       render={(data) => {
         <p>{data.length} desserts</p>;
@@ -569,28 +599,14 @@ const DrinksCount = () => {
       }}
     />
   );
->>>>>>> 1e91cd9d544cc3f62a01b248829f5a0a784cd968
 };
 
 function App() {
   return (
-<<<<<<< HEAD
-    <div className="App">
-      <header>Little Lemon Restuarant 🍕</header>
-      <Alert>
-        <h4>Delete Account</h4>
-        <p>
-          Are you sure you want to proceed? You will miss all your delicious
-          recipes!
-        </p>
-        <DeleteButton />
-      </Alert>
-=======
     <div>
       <header>Little Lemon Restaurant 🍕</header>
       <DesertCount />
       <DrinksCount />
->>>>>>> 1e91cd9d544cc3f62a01b248829f5a0a784cd968
     </div>
   );
 }
