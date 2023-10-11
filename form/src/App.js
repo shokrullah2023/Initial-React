@@ -3,11 +3,11 @@
 // import "./App.css";
 // // import Btn from "./Btn";
 // import ModeToggle from "./ModeToggle";
-import { useEffect, useReducer, useState } from "react";
+// import { useEffect, useReducer, useState } from "react";
 import "./App.css";
 // import { useState } from "react";
-import UserContext from "./UserContext";
-import { UserProvider, useUser } from "./UserContext";
+// import UserContext from "./UserContext";
+// import { UserProvider, useUser } from "./UserContext";
 import React from "react";
 
 /*        TODO APPLICATION         */
@@ -358,5 +358,39 @@ import React from "react";
 //     </>
 //   );
 // }
+
+/***************COMPONENT COMPOSITION*****************/
+const Button = ({ children, backgroundColor }) => {
+  return <button style={{ backgroundColor }}>{children}</button>;
+};
+
+const Alert = ({ children }) => {
+  return (
+    <>
+      <div className="Overlay" />
+      <div className="Alert">{children}</div>
+    </>
+  );
+};
+
+const DeleteButton = () => {
+  return <Button backgroundColor="red">Delete</Button>;
+};
+
+function App() {
+  return (
+    <div className="App">
+      <header>Little Lemon Restuarant 🍕</header>
+      <Alert>
+        <h4>Delete Account</h4>
+        <p>
+          Are you sure you want to proceed? You will miss all your delicious
+          recipes!
+        </p>
+        <DeleteButton />
+      </Alert>
+    </div>
+  );
+}
 
 export default App;
